@@ -1,0 +1,10 @@
+{
+  "name": "moodtune-functions",
+  "version": "1.0.0",
+  "description": "Netlify functions for MoodTune Scanner",
+  "main": "api.js",
+  "dependencies": {
+    "yt-search": "^2.13.1",
+    "ytmusic-api": "^5.3.0"
+  }
+}

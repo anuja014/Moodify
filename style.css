@@ -119,9 +119,17 @@ header { text-align: center; margin-bottom: 28px; }
 .btn:active { transform: translateY(0); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .btn-primary {
-  --btn-bg: linear-gradient(90deg, rgba(110, 231, 255, .18), rgba(167, 139, 250, .18));
-  --btn-border: rgba(110, 231, 255, .35);
-  box-shadow: 0 10px 30px rgba(110, 231, 255, .12);
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  border-color: rgba(110,231,255,0.3);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.btn-test {
+  background: linear-gradient(135deg, var(--warning), #f97316);
+  border-color: rgba(245,158,11,0.3);
+  color: var(--bg);
+  font-weight: 600;
 }
 
 .status-indicator { margin-top: 4px; text-align: center; }

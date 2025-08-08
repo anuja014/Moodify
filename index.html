@@ -49,6 +49,7 @@
                 <button id="scanButton" class="btn" disabled>Scan Once</button>
                 <button id="continuousButton" class="btn" disabled>Auto Scan: OFF</button>
                 <button id="stopButton" class="btn" disabled>Stop</button>
+                <button id="testButton" class="btn btn-test" disabled>Test Detection</button>
             </div>
             
             <div class="status-indicator" data-animate>
@@ -69,6 +70,15 @@
                 <div class="music-controls">
                     <button id="playButton" class="btn btn-primary" disabled>Play</button>
                     <button id="pauseButton" class="btn" disabled>Pause</button>
+                </div>
+            </div>
+            
+            <div class="diagnostic card">
+                <h2>Diagnostics</h2>
+                <div id="diagnosticInfo">
+                    <p>Camera: <span id="cameraStatus">Not started</span></p>
+                    <p>Models: <span id="modelStatus">Not loaded</span></p>
+                    <p>Face Detection: <span id="faceStatus">Not tested</span></p>
                 </div>
             </div>
         </div>
