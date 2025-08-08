@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTune Scanner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="bg-orbs" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+    </div>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-radial" aria-hidden="true"></div>
+    <div id="splash" class="splash" aria-hidden="false">
+        <div class="splash-inner">
+            <div class="splash-logo" aria-hidden="true">🎵</div>
+            <h1 class="splash-brand">MoodTune</h1>
+            <p class="splash-subtitle">AI‑Powered Mood Music</p>
+            <button id="enterButton" class="btn btn-primary splash-btn">Enter</button>
+            <div class="splash-note">Camera access is required for mood scanning</div>
+        </div>
+    </div>
+
+    <div class="container" data-animate>
+        <header>
+            <h1 class="brand" data-animate>🎵 MoodTune Scanner</h1>
+            <p class="subtitle" data-animate>Minimal, smooth, mood-driven music. Point and play.</p>
+            <div class="header-actions" data-animate>
+                <button id="toggleMoodWin" class="btn">Mood History</button>
+                <button id="togglePlayerWin" class="btn">Mini Player</button>
+            </div>
+        </header>
+
+        <div class="scanner-container" data-animate>
+            <div class="video-container" data-animate>
+                <video id="video" width="400" height="300" autoplay muted></video>
+                <canvas id="overlay" width="400" height="300"></canvas>
+            </div>
+            
+            <div class="controls" data-animate>
+                <button id="startButton" class="btn btn-primary">Start Camera</button>
+                <button id="scanButton" class="btn" disabled>Scan Once</button>
+                <button id="continuousButton" class="btn" disabled>Auto Scan: OFF</button>
+                <button id="stopButton" class="btn" disabled>Stop</button>
+            </div>
+            
+            <div class="status-indicator" data-animate>
+                <div id="loadingStatus"><span class="status-dot"></span><span class="status-text">Ready to start</span></div>
+            </div>
+        </div>
+
+        <div class="results-container" data-animate>
+            <div class="mood-results card">
+                <h2>Detected Mood</h2>
+                <div id="moodDisplay">Waiting for scan...</div>
+                <div class="emotion-bars" id="emotionBars"></div>
+            </div>
+            
+            <div class="music-player card">
+                <h2>Generated Music</h2>
+                <div id="musicInfo">No music playing</div>
+                <div class="music-controls">
+                    <button id="playButton" class="btn btn-primary" disabled>Play</button>
+                    <button id="pauseButton" class="btn" disabled>Pause</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="visualization card" id="visualization" data-animate>
+            <h2>Music Visualization</h2>
+            <canvas id="visualizer" width="600" height="200"></canvas>
+        </div>
+
+        <footer data-animate>
+            <p>MoodTune Scanner — AI‑Powered Mood Music</p>
+            <p class="muted">Scan your mood and let the music play</p>
+        </footer>
+    </div>
+
+    <!-- Load Face-API.js -->
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    
+    <!-- Load TensorFlow.js and Pose Detection -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@0.0.5/dist/pose-detection.min.js"></script>
+    
+    <!-- Load our custom script -->
+    <script src="script.js"></script>
+
+    <!-- YouTube IFrame API (loads player for YouTube fallback/primary playback) -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <div id="yt-player" style="width:0;height:0;overflow:hidden;position:absolute;left:-9999px;">
+        <!-- Player injected by YT IFrame API -->
+    </div>
+
+    <!-- Floating Windows -->
+    <div id="float-mood" class="float-window hidden">
+        <div class="window-header" id="float-mood-handle">
+            <span>Mood History</span>
+            <button class="win-close" data-target="float-mood">×</button>
+        </div>
+        <div class="window-body">
+            <ul id="moodHistory" class="mood-list"></ul>
+        </div>
+    </div>
+
+    <div id="float-player" class="float-window hidden">
+        <div class="window-header" id="float-player-handle">
+            <span>Mini Player</span>
+            <button class="win-close" data-target="float-player">×</button>
+        </div>
+        <div class="window-body" id="mini-player-content">No music playing</div>
+    </div>
+</body>
+</html>
